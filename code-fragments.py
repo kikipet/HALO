@@ -9,6 +9,8 @@ import time
 
 # honestly a lot of this is going to depend on exactly what hardware we're using
 
+# account for possibly not receiving data from a sensor - just repeat the last entry or say N/A or something like that?
+
 while True:
 	# code?
 	# better condition for while loop?
