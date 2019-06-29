@@ -12,3 +12,6 @@ import time
 while True:
 	# code?
 	# better condition for while loop?
+	# read data from their respective sensors
+	# write data to some file
+	time.sleep(30) # not actually sure how often I should collect data
