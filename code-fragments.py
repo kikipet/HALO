@@ -17,3 +17,11 @@ while True:
 	# read data from their respective sensors
 	# write data to some file
 	time.sleep(30) # not actually sure how often I should collect data
+
+# temperature sensor outputs data in w1_slave file - does it keep all data or just the last recorded data?
+# assuming the second:
+tempData = open("w1_slave", "r")
+lines = tempData.readLines()
+while lines[0][-3:] != "YES":
+	lines = tempData.readLines()
+temp = float(lines[1][lines[1].find("t=")+2:])/1000 # Celsius
