@@ -20,8 +20,8 @@ while True:
 
 # temperature sensor outputs data in w1_slave file - does it keep all data or just the last recorded data?
 # assuming the second:
-tempData = open("w1_slave", "r")
+tempData = open("w1_slave", "r") # add path to file name
 lines = tempData.readLines()
-while lines[0][-3:] != "YES":
+while lines[0].strip()[-3:] != "YES":
 	lines = tempData.readLines()
 temp = float(lines[1][lines[1].find("t=")+2:])/1000 # Celsius
