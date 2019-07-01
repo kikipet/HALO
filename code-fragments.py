@@ -1,4 +1,6 @@
-import time
+#!/bin/python3
+
+import time, math
 
 # time.ctime() gives something like "Sat Jun 29 02:27:50 2019"
 
@@ -10,6 +12,8 @@ import time
 # honestly a lot of this is going to depend on exactly what hardware we're using
 
 # account for possibly not receiving data from a sensor - just repeat the last entry or say N/A or something like that?
+
+alt = lambda p: (10**(math.log10(p/1013.25) + 6) - 1) / 6.8755856 * -1 # where p is in hPa
 
 while True:
 	# code?
