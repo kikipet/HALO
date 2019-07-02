@@ -30,7 +30,6 @@ while lines[0].strip()[-3:] != "YES":
 	lines = tempData.readLines()
 temp = float(lines[1][lines[1].find("t=")+2:])/1000 # Celsius
 
-
 # camera
 
 cam = picamera.PiCamera()
