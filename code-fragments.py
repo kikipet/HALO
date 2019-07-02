@@ -1,6 +1,6 @@
 #!/bin/python3
 
-import time, math
+import time, math, picamera
 
 # time.ctime() gives something like "Sat Jun 29 02:27:50 2019"
 
@@ -29,3 +29,11 @@ lines = tempData.readLines()
 while lines[0].strip()[-3:] != "YES":
 	lines = tempData.readLines()
 temp = float(lines[1][lines[1].find("t=")+2:])/1000 # Celsius
+
+# camera
+
+cam = picamera.PiCamera()
+while True:
+    time.sleep(60)
+    cam.capture("IMG_" + time.strftime("%H%M%S", time.localtime()) + ".jpg") # localtime or gmtime?
+    # hm change capture rate based on altitude? (like at a certain point the view each minute will not change all too much)
