@@ -1,22 +1,27 @@
-import time, math, smbus
+import time, math, smbus, RPi.GPIO as GPIO
 
+tempData = open("w1_slave", "r") # add path to the file name
+	
 def read_temp():
 	'''read_temp() -> float
 	Reads data from thermometer
 	Returns temperature (Celsius)'''
-	pass
+	lines = tempData.readLines()
+	while lines[0].strip()[-3:] != "YES":
+		lines = tempData.readLines()
+	return float(lines[1][lines[1].find("t=")+2:])/1000
 
-def read_barometer():
+def read_baro():
 	'''read_barometer() -> tuple
 	Reads data from barometer
 	Returns pressure (hPa), altitude (feet)'''
 	# maybe return in more "standard" unit of pressure
 	pass
 
-def read_accelerometer():
-	'''read_accelerometer() -> tuple
+def read_accel():
+	'''read_accel() -> tuple
 	Reads data from accelerometer
-	Returns'''
+	Returns acceleration in x, y, z directions'''
 	pass
 
 def read_air():
