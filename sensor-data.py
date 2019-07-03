@@ -1,4 +1,4 @@
-import time, math, smbus, RPi.GPIO as GPIO
+import time, math, smbus, RPi.GPIO as GPIO, board, busio, adafruit_mprls, adafruit_mma8451
 
 tempData = open("w1_slave", "r") # add path to the file name
 	
@@ -16,7 +16,7 @@ def read_baro():
 	Reads data from barometer
 	Returns pressure (hPa), altitude (feet)'''
 	# maybe return in more "standard" unit of pressure
-	pass
+	alt = lambda p: (10**(math.log10(p/1013.25) + 6) - 1) / 6.8755856 * -1
 
 def read_accel():
 	'''read_accel() -> tuple
