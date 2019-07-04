@@ -16,6 +16,7 @@ Some of these packages probably are already installed on the Pi.
 **Other programs/libraries**
 * direwolf (https://github.com/wb2osz/direwolf)
 * RTL-SDR library (https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr)
+* Adafruit Blinka (https://pypi.org/project/Adafruit-Blinka/)
 
 **Other necessary python modules**
 * time
