@@ -1,4 +1,6 @@
-import time, math, smbus, RPi.GPIO as GPIO, board, busio, adafruit_mprls, adafruit_mma8451
+import time, math, smbus, RPi.GPIO as GPIO, board, busio, adafruit_mprls, adafruit_mma8451, picamera
+
+cam = picamera.PiCamera()
 
 path = "/sys/bus/w1/devices" # ?
 tempData = open("w1_slave", "r") # add path to the file name
@@ -40,6 +42,8 @@ def read_co2():
 # 1 big log file
 log = open("sensor-data-log", "w")
 
+c = 0
+
 while True:
 	# bad condition for while loop - it should stop at *some* point
 	temp = read_temp()
@@ -48,4 +52,9 @@ while True:
 	co2 = read_co2()
 	log.write("{}    {:6.3f} \u00b0C    {:4.3f} hPa  {:6.3f} ft    X: {:.3f} m/s\u00b2  Y: {:.3f} m/s\u00b2  Z: {:.3f} m/s\u00b2    {} ppm".format\
 		  (time.strftime("%H:%M:%S", time.localtime()), temp, baro[0], baro[1], accel[0], accel[1], accel[2], co2))
+	if baro[1] < 30000 or (baro[1] >= 30000 and c == 0):
+		# hm change capture rate based on altitude? (like at a certain point the view each minute will not change all too much)
+		# a bit arbitrary
+		cam.capture("IMG_" + time.strftime("%H%M%S", time.localtime()) + ".jpg") # localtime or gmtime?
 	time.sleep(120)
+	c = 1 - c
