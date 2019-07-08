@@ -8,8 +8,6 @@ This is where the programs for the HALO balloon project at Purdue will be stored
 
 Some of these packages probably are already installed on the Pi.
 
-***serial module???***
-
 ### Packages through aptitude
 * python-rpi.gpio
 * python3-smbus
@@ -24,6 +22,7 @@ Some of these packages probably are already installed on the Pi.
 * direwolf (https://github.com/wb2osz/direwolf)
 * RTL-SDR library (https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr)
 * Adafruit Blinka (https://pypi.org/project/Adafruit-Blinka/)
+* pySerial (https://pyserial.readthedocs.io/en/latest/pyserial.html)
 
 ### Other necessary python modules
 * time
