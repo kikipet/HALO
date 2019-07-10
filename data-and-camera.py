@@ -51,6 +51,8 @@ log = open("sensor-data-log", "w")
 
 c = 0
 
+# non-GPS data should be collected every 10 seconds or so
+
 while True:
 	# bad condition for while loop - it should stop at *some* point
 	temp = read_temp()
