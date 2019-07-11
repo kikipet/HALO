@@ -1,7 +1,9 @@
 # Project HALO
 
-\*Work in progress\*
 F how exactly are we connecting the CO2 sensor? B/c I may have to rewrite that code :\
+FFF analog apparently is really imprecise please don't say we're using analog is there a way to get serial to work b/c that's what I've coded up...
+
+\*Work in progress\*
 
 This is where the programs for the HALO balloon project at Purdue will be stored.
 
@@ -86,4 +88,4 @@ The DS18B20 temperature sensor uses a 1-wire interface.
 
 ### CO2 Sensor (MHZ-14A)
 
-I don't even know what kind of sensor this is. It uses the serial port???
+I don't even know what kind of sensor this is. It can use analog (but inaccurate/imprecise), PWM (ok) or serial (the best).
