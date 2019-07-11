@@ -9,7 +9,7 @@ This is where the programs for the HALO balloon project at Purdue will be stored
 Some of these packages probably are already installed on the Pi.
 
 ### Packages through aptitude
-* python-rpi.gpio
+* ~~python-rpi.gpio~~
 * python3-smbus
 * i2c-tools
 * libgps23
@@ -38,9 +38,31 @@ Some of these packages probably are already installed on the Pi.
 
 ## Other noteworthy things
 
+### General comments
+Go to raspi-config -> Interfaces and enable camera, I2C, serial port, 1-Wire
+
+To find the address of each I2C sensor:
+
+1. `i2cdetect -l` to find the correct bus id
+2. `i1cdetect -y [ID]`
+This should give an output like this:
+(whoops formatting is waaaay off)
+`     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- 1d -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --`
+There is a sensor at address 0x1D.
+
+### Temperature Sensor (DS18B20)
+
 The DS18B20 temperature sensor uses a 1-wire interface.
 
-### How to set up the Pi:
+#### How to set up the Pi:
 
 1. Open `/boot/config.txt` as sudo
 2. Add `dtoverlay=w1–gpio` to the end of the file
