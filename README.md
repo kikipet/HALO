@@ -1,8 +1,5 @@
 # Project HALO
 
-F how exactly are we connecting the CO2 sensor? B/c I may have to rewrite that code :\
-FFF analog apparently is really imprecise please don't say we're using analog is there a way to get serial to work b/c that's what I've coded up...
-
 \*Work in progress\*
 
 This is where the programs for the HALO balloon project at Purdue will be stored.
@@ -13,7 +10,7 @@ Some of these packages probably are already installed on the Pi.
 
 ### Packages through aptitude
 * ~~python-rpi.gpio~~
-* python3-smbus
+* ~~python3-smbus~~
 * i2c-tools
 * libgps23
 * gpsd
@@ -65,13 +62,13 @@ There is a sensor at address 0x1D.
 
 ### Accelerometer (MMA8451)
 
-An Adafruit sensor, which makes life a \*lot\* easier.
+An Adafruit sensor, which makes life a lot easier.
 Outputs acceleration in X, Y, Z directions in m/s^2.
 
 ### Pressure Sensor (MPRLS)
 
 Another Adafruit sensor.
-Outputs pressure in hPa, but I added some code that converts to altitude in feet.
+Outputs pressure in hPa, but I added some code that also outputs altitude in feet.
 
 ### Temperature Sensor (DS18B20)
 
@@ -88,4 +85,4 @@ The DS18B20 temperature sensor uses a 1-wire interface.
 
 ### CO2 Sensor (MHZ-14A)
 
-I don't even know what kind of sensor this is. It can use analog (but inaccurate/imprecise), PWM (ok) or serial (the best).
+I don't even know what kind of sensor this is. It can use analog (but inaccurate/imprecise), PWM (ok) or serial (the best). We're using serial (UART).
