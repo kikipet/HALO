@@ -22,6 +22,7 @@ Some of these packages probably are already installed on the Pi.
 * direwolf (https://github.com/wb2osz/direwolf)
 * RTL-SDR library (https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr)
 * Adafruit Blinka (https://pypi.org/project/Adafruit-Blinka/)
+  * Also separate libraries for the MMA8451 and MPRLS sensors
 * pySerial (https://pyserial.readthedocs.io/en/latest/pyserial.html)
 
 ### Other necessary python modules
@@ -44,10 +45,9 @@ Go to raspi-config -> Interfaces and enable camera, I2C, serial port, 1-Wire
 To find the address of each I2C sensor:
 
 1. `i2cdetect -l` to find the correct bus id
-2. `i1cdetect -y [ID]`
+2. `i2cdetect -y [ID]`
 This should give an output like this:
-(whoops formatting is waaaay off)
-`     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+```     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
 00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
 10: -- -- -- -- -- -- -- -- -- -- -- -- -- 1d -- -- 
 20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
@@ -55,7 +55,8 @@ This should give an output like this:
 40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-70: -- -- -- -- -- -- -- --`
+70: -- -- -- -- -- -- -- --
+```
 There is a sensor at address 0x1D.
 
 ### Temperature Sensor (DS18B20)
