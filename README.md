@@ -47,7 +47,8 @@ To find the address of each I2C sensor:
 1. `i2cdetect -l` to find the correct bus id
 2. `i2cdetect -y [ID]`
 This should give an output like this:
-```     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+```
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
 00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
 10: -- -- -- -- -- -- -- -- -- -- -- -- -- 1d -- -- 
 20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
@@ -58,6 +59,16 @@ This should give an output like this:
 70: -- -- -- -- -- -- -- --
 ```
 There is a sensor at address 0x1D.
+
+### Accelerometer (MMA8451)
+
+An Adafruit sensor, which makes life a \*lot\* easier.
+Outputs acceleration in X, Y, Z directions in m/s^2.
+
+### Pressure Sensor (MPRLS)
+
+Another Adafruit sensor.
+Outputs pressure in hPa, but I added some code that converts to altitude in feet.
 
 ### Temperature Sensor (DS18B20)
 
@@ -71,3 +82,7 @@ The DS18B20 temperature sensor uses a 1-wire interface.
 4. If not already connected, connect sensor
 5. `sudo modprobe w1–gpio`
 6. `sudo modprobe w1-therm`
+
+### CO2 Sensor (MHZ-14A)
+
+I don't even know what kind of sensor this is. It uses the serial port???
