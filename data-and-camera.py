@@ -7,7 +7,7 @@ tempData = open(path+"w1_slave", "r") # add path to the file name
 
 i2c = busio.I2C(board.SCL, board.SDA)
 mpr = adafruit_mprls.MPRLS(i2c, psi_min=0, psi_max=25)
-mma = adafruit_mma8451.MMA8451(i2c)
+mma = adafruit_mma8451.MMA8451(i2c, address=0x1D) # this MAY change
 mhz = serial.Serial("/dev/ttyAMA0",9600,timeout=1) # replace "/dev/ttyAMA0" with actual location of sensor
 packet = [0xff,0x01,0x86,0x00,0x00,0x00,0x00,0x00,0x79] # is this what I want or do I need to change values?
 zero = [0xff, 0x87, 0x87, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf2]
