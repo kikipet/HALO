@@ -1,6 +1,7 @@
 # Project HALO
 
 \*Work in progress\*
+F how exactly are we connecting the CO2 sensor? B/c I may have to rewrite that code :\
 
 This is where the programs for the HALO balloon project at Purdue will be stored.
 
