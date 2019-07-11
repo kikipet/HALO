@@ -35,7 +35,7 @@ Some of these packages probably are already installed on the Pi.
 ### For potential data processing at the very end
 (by no means a definitive list)
 * matplotlib
-   * basemap
+   * cartopy
    * GEOS
    * mplot3d
 * mpld3
