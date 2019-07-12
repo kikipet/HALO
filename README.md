@@ -32,14 +32,25 @@ Some of these packages probably are already installed on the Pi.
 ### For potential data processing at the very end
 (by no means a definitive list)
 * matplotlib
-   * cartopy
    * GEOS
    * mplot3d
+* cartopy
+
+  More dependencies:
+   * Cython
+   * six
+   * PROJ
+   * NumPy
+   * shapely
+   * pyshp
 * mpld3
 
 ## Other noteworthy things
 
 ### General comments
+
+This uses a Raspberry Pi Model 3 B+ running Buster Raspbian.
+
 Go to raspi-config -> Interfaces and enable camera, I2C, serial port, 1-Wire
 
 To find the address of each I2C sensor:
