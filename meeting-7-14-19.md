@@ -4,7 +4,9 @@ Sorry I can't make it, hopefully this document will help some. I don't know how 
 
 Some of the things here are also on the main README, but for convenience I'll put them here as well.
 
-## Basic info about the Pi
+## Pi Crash Course
+
+### Basic info
 
 To turn on the Pi, have the monitor, keyboard and mouse plugged in before plugging in the power cord.
 
@@ -18,7 +20,7 @@ Application shortcuts are on the top left of the screen with more if you click o
 
 You will be using the terminal emulator, which is the icon that looks like `>_`.
 
-## WiFi
+### WiFi
 
 I don't know if you'll need WiFi, but here's how to get it.
 
@@ -38,17 +40,17 @@ If you get a complaint about time or date not being correct:
    
 If nothing works, don't worry about it. If all goes well you *shouldn't* need WiFi on the Pi.
 
-## Crash Course
+### Navigation
 
 Note: If I write something like `[FILE]` as part of a command, replace it with the actual file/directory/whatever you are using. You may need to provide the complete path of the file/directory/whatever.
 
-### Navigation
+Directories = folders in a GUI navigator which the Pi *does* have but you probably won't use.
 
 You will start off in the "home" directory `/home/pi`. Everything you need *should* be in here, but I make no promises.
 
-Some useful commands:
- * `ls` will list the contents of the directory you are currently in.
- * `cd [directory one level above/below]` will change your current directory to wherever you specify.
+Some useful commands on the terminal:
+ * `ls` (or if you're lazy `l` works on this device) will list the contents of the directory you are currently in.
+ * `cd [directory one level above/below OR full path to directory]` will change your current directory to wherever you specify.
 
 ### Files
 
@@ -57,22 +59,40 @@ To edit files, you've got a few options.
 1. Open the text editor GUI: Click on the raspberry > Accessories > Text Editor. The rest should be self-explanatory, just remember to save the file when you're done.
 2. Open the code editor GUI: Click on the raspberry > Programming > Geany. Again, the rest should be self-explanatory.
 3. Use the text editor in terminal (Vim):
-  1. Open up a terminal.
-  2. `vim [FILE]` - You may need to add `sudo` to the beginning, depending on the file.
-  3. Navigate the file using arrow keys. You can also scroll and use `Page Up` and `Page Down`.
-  4. To insert text, type `I`. Once you're done, hit `Esc`.
-  5. To close the file, hit `Esc` if you haven't already done so, then type `:x` and press `Enter`.
-  6. If you need help, type `:h` and press `Enter`. Alternatively, use Google.
+   1. Open up a terminal.
+   2. `vim [FILE]` - You may need to add `sudo` to the beginning, depending on the file.
+   3. Navigate the file using arrow keys. You can also scroll and use `Page Up` and `Page Down`.
+   4. To insert text, type `I`. Once you're done, hit `Esc`.
+   5. To close the file, hit `Esc` if you haven't already done so, then type `:x` and press `Enter`.
+   6. If you need help, type `:h` and press `Enter`. Alternatively, use Google.
   
-To run a Python program, type `python3 [FILE]`. To run a Bash script (I don't think you'll need to), type `./[FILE]`.
+To run a Python program, type `python3 [FILE]`. To run a Bash script (you shouldn't need to), type `./[FILE]`.
 
 Speaking of Python...
 
 ### Python
 
+I've got all of the programs *written* but I don't know if they're going to work right off the bat. I have already pointed out some things that will need to be changed in the program files.
+
+I know Talal at least knows a programming language (Java I think). Basically, what you need to know:
+1. no semicolons
+2. no curly braces
+3. no "main" function needs to be specified
+4. things like `True` and `False` are capitalized
+5. `and` instead of `&&`, `or` instead of `||`, `not` instead of `!` - `!` exists but only in the context of `!=`
+6. `#` is used for comments. If you need a multi-line comment, use `'''[insert text here]'''` but this is also the way you can specify the purpose of various functions (like Javadoc comments in Java).
+
+I think if you already know one programming language you can pick up what a Python program is trying to do pretty well. Even if you don't, Python is a lot easier to follow for beginners than some other languages (\*cough\* C++).
+
+## TODO
+
+Everything is in the `/home/pi/HALO` directory. When you first open up a terminal window, it will take you to `/home/pi`. So just `cd HALO` and you should be good.
+
 ### Sensor Wrangling
 
-To find the address of each I2C sensor:
+**Note:** Whenever you connect/disconnect sensors, turn the Pi off first. Then turn the Pi back on. If you don't do this, it won't harm anything but I don't think the Pi will recognize that a sensor has been plugged in.
+
+To find the address of each I2C sensor (so the accelerometer and the pressure sensor):
 
 1. Open a terminal.
 2. `i2cdetect -l` to find the correct bus id
@@ -91,12 +111,6 @@ This should give an output like this:
 ```
 Tihs means there is a sensor at address 0x1D.
 
-## TODO
-
-Everything is in the `/home/pi/HALO` directory.
-
-**Note:** Whenever you connect/disconnect sensors, turn the Pi off first.
-
 ### Temperature Sensor (DS18B20)
 
 The DS18B20 temperature sensor uses a 1-wire interface.
@@ -114,3 +128,9 @@ Find where the sensor is storing data.
 2. `ls /sys/bus/w1/devices`
 
 Hopefully you will see something that is not `00-180000000000`, `00-580000000000`, `00-980000000000`, or `w1_bus_master1`. Add that to the path in `temp.py`. 
+
+### CO2 Sensor (MHZ-14A)
+
+
+### GPS Tracker
+
