@@ -162,6 +162,7 @@ ttyAMA0 (currently what I have in the program)
 ttyprintk (unlikely)
 ```
 If you see anything different starting with `tty` that could very well be where the sensor is. My guess is something like `ttyUSB***`. Try it, there shouldn't be any harm in doing so.
+
 3. I think you'll be okay just running the program. Like I said, among everything we're hooking up to the Pi, I know the least about this sensor.
 
 ### GPS Tracker
