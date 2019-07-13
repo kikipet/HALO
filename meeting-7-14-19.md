@@ -4,6 +4,8 @@ Sorry I can't make it, hopefully this document will help some. I don't know how 
 
 Some of the things here are also on the main README, but for convenience I'll put them here as well.
 
+Meeting-specific things are in the TODO section of this document.
+
 ## Pi Crash Course
 
 ### Basic info
@@ -25,7 +27,7 @@ You will be using the terminal emulator, which is the icon that looks like `>_`.
 I don't know if you'll need WiFi, but here's how to get it.
 
 1. If the Pi is not already on the network, click on the little wifi icon in the top right of the screen and click on attwifi.
-2. Open up the Internet browser (globe icon). Go to 1.1.1.1 (IP address, works like a URL for our purposes).
+2. Open up the Internet browser (globe icon). Go to `1.1.1.1` (IP address, works like a URL for our purposes).
 3. Follow the instructions on that webpage.
 
 If you get a complaint about time or date not being correct:
@@ -50,7 +52,8 @@ You will start off in the "home" directory `/home/pi`. Everything you need *shou
 
 Some useful commands on the terminal:
  * `ls` (or if you're lazy `l` works on this device) will list the contents of the directory you are currently in.
- * `cd [directory one level above/below OR full path to directory]` will change your current directory to wherever you specify.
+   * If you for some reason or another need to access a hidden file or directory (name starts with `.`), then `ls -a` will show all files and directories, hidden or otherwise.
+ * `cd [name of directory one level above/below OR full path to directory]` will change your current directory to wherever you specify.
 
 ### Files
 
@@ -72,7 +75,7 @@ Speaking of Python...
 
 ### Python
 
-I've got all of the programs *written* but I don't know if they're going to work right off the bat. I have already pointed out some things that will need to be changed in the program files.
+I've got all of the programs *written* but I don't know if they're going to work right off the bat. (The accelerometer and camera work.) I have already pointed out some things that will need to be changed in the program files.
 
 I know Talal at least knows a programming language (Java I think). Basically, what you need to know:
 1. no semicolons
@@ -92,7 +95,19 @@ Everything is in the `/home/pi/HALO` directory. When you first open up a termina
 
 **Note:** Whenever you connect/disconnect sensors, turn the Pi off first. Then turn the Pi back on. If you don't do this, it won't harm anything but I don't think the Pi will recognize that a sensor has been plugged in.
 
-To find the address of each I2C sensor (so the accelerometer and the pressure sensor):
+**Note:** If you are trying to get data from a sensor and the program crashes, wait a minute or two before running that program again. That's what happened to the accelerometer last time.
+
+**Note:** Keep in mind that as you start plugging in multiple sensors at the same time, their addresses may very well change. So check up on that.
+
+In order from what I see as easiest to hardest (besides the GPS tracker):
+
+### Pressure Sensor (MPRLS)
+
+Setting this up will be really similar to setting up the accelerometer last time.
+
+I've specified a dummy address for the sensor in `baro.py`, but you'll have to change that.
+
+To find the address: (this works for the accelerometer as well)
 
 1. Open a terminal.
 2. `i2cdetect -l` to find the correct bus id
@@ -110,6 +125,8 @@ This should give an output like this:
 70: -- -- -- -- -- -- -- --
 ```
 Tihs means there is a sensor at address 0x1D.
+
+After changing the address, run `baro.py` and you should be good.
 
 ### Temperature Sensor (DS18B20)
 
@@ -131,6 +148,26 @@ Hopefully you will see something that is not `00-180000000000`, `00-580000000000
 
 ### CO2 Sensor (MHZ-14A)
 
+This is the sensor that I am the least sure about working. If this sensor is acting up, don't worry about it. I know we intend to finish hooking up all of the sensors this meeting, but if you're having problems just write down what the problems are and I can get a look at it.
+
+With that in mind:
+
+1. Hopefully you guys have a TTL to USB converter; wire up the sensor to that
+2. Run `ls /dev`. I've got a default location set in `co2.py`, but you may have to change that.
+What I'm seeing right now that could possibly be the location of the sensor:
+```
+tty
+tty## (where ## ranges from 1 to 63)
+ttyAMA0 (currently what I have in the program)
+ttyprintk (unlikely)
+```
+If you see anything different starting with `tty` that could very well be where the sensor is. My guess is something like `ttyUSB***`. Try it, there shouldn't be any harm in doing so.
+3. I think you'll be okay just running the program. Like I said, among everything we're hooking up to the Pi, I know the least about this sensor.
 
 ### GPS Tracker
 
+Follow the instructions on https://learn.adafruit.com/adafruit-ultimate-gps-on-the-raspberry-pi/setting-everything-up.
+
+Then, run `sudo dpkg-reconfigure gpsd` and answer the questions. If it asks for options, use `-n`.
+
+If you run into anything, https://github.com/wb2osz/direwolf/blob/master/doc/Raspberry-Pi-APRS-Tracker.pdf has possibly more extensive information about this.
