@@ -93,7 +93,9 @@ Tihs means there is a sensor at address 0x1D.
 
 ## TODO
 
-There should be a file called `test-sensors.py`. This is where I was messing around with code, and now you will too. 
+There should be a file called `test-sensors.py`. This is where I was messing around with code, but to make life hopefully easier, I've split up the code for each sensor. 
+
+**Note:** Whenever you connect/disconnect sensors, turn the Pi off first.
 
 ### Temperature Sensor (DS18B20)
 
@@ -101,11 +103,14 @@ The DS18B20 temperature sensor uses a 1-wire interface.
 
 How to set up the Pi: (I hope this works)
 
-1. Open a terminal
-2. `sudo /boot/config.txt`
-3. Add `dtoverlay=w1–gpio` to the end of the file (type I, use 
-4. Reboot
-5. If not already connected, connect sensor
-6. Open a terminal
-7. `sudo modprobe w1–gpio`
-8. `sudo modprobe w1-therm`
+1. Connect sensor
+2. Open a terminal
+3. `sudo modprobe w1–gpio`
+4. `sudo modprobe w1-therm`
+
+Find where the sensor is storing data.
+
+1. Open terminal
+2. `ls /sys/bus/w1/devices`
+
+Hopefully you will see something that is not `00-180000000000`, `00-580000000000`, `00-980000000000`, or `w1_bus_master1`. Add that to the path in `temp.py`. 
