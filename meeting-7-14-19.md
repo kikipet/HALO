@@ -93,7 +93,7 @@ Tihs means there is a sensor at address 0x1D.
 
 ## TODO
 
-There should be a file called `test-sensors.py`. This is where I was messing around with code, but to make life hopefully easier, I've split up the code for each sensor. 
+Everything is in the `/home/pi/HALO` directory.
 
 **Note:** Whenever you connect/disconnect sensors, turn the Pi off first.
 
