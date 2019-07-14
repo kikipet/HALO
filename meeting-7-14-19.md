@@ -77,7 +77,7 @@ Speaking of Python...
 
 I've got all of the programs *written* but I don't know if they're going to work right off the bat. (The accelerometer and camera work.) I have already pointed out some things that will need to be changed in the program files.
 
-I know Talal at least knows a programming language (Java I think). Basically, what you need to know:
+I know Talal, at least, knows a programming language (Java I think). Basically, what you need to know:
 1. no semicolons
 2. no curly braces
 3. no "main" function needs to be specified
@@ -163,7 +163,9 @@ ttyprintk (unlikely)
 ```
 If you see anything different starting with `tty` that could very well be where the sensor is. My guess is something like `ttyUSB***`. Try it, there shouldn't be any harm in doing so.
 
-3. I think you'll be okay just running the program. Like I said, among everything we're hooking up to the Pi, I know the least about this sensor.
+3. Run `co2.py`.
+
+Like I said, among everything we're hooking up to the Pi, I know the least about this sensor.
 
 ### GPS Tracker
 
