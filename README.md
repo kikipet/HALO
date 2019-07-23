@@ -97,3 +97,10 @@ The DS18B20 temperature sensor uses a 1-wire interface.
 ### CO2 Sensor (MHZ-14A)
 
 I don't even know what kind of sensor this is. It can use analog (but inaccurate/imprecise), PWM (ok) or serial (the best). We're using serial (UART).
+
+
+### Tracking
+
+Tracking done through APRS - pass packets via Dire Wolf to I-Gate (noam.aprs2.net or similar)
+
+For a given call sign, use this to generate a passcode for I-Gate: https://apps.magicbug.co.uk/passcode/
