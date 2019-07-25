@@ -15,6 +15,8 @@ Some of these packages probably are already installed on the Pi.
 * gpsd-clients
 * libgps-dev
 * python-gps
+* libasound2-dev
+* libudev-dev
 
 ### Other programs/libraries
 * direwolf (https://github.com/wb2osz/direwolf)
