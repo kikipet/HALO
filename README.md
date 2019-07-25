@@ -104,3 +104,10 @@ I don't even know what kind of sensor this is. It can use analog (but inaccurate
 Tracking done through APRS - pass packets via Dire Wolf to I-Gate (noam.aprs2.net or similar)
 
 For a given call sign, use this to generate a passcode for I-Gate: https://apps.magicbug.co.uk/passcode/
+
+add `* * * * * /home/pi/dw-start.sh /dev/(whatever)` to crontab
+
+Change NOCALL to call sign
+Enable all of the I-Gate stuff
+TBEACON blah blah blah 2 minutes right?
+I may need to get a new passcode :(
