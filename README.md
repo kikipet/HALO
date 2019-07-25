@@ -20,14 +20,21 @@ Some of these packages probably are already installed on the Pi.
 
 ### Other programs/libraries
 * direwolf (https://github.com/wb2osz/direwolf)
-* RTL-SDR library (https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr)
+* ~~RTL-SDR library (https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr)~~
 * Adafruit Blinka (https://pypi.org/project/Adafruit-Blinka/)
-  * Also separate libraries for the MMA8451 and MPRLS sensors
+
+  Also separate libraries for the MMA8451 and MPRLS sensors
+  * adafruit-circuitpython-mma8451
+  * adafruit-circuitpython-mprls
 * pySerial (https://pyserial.readthedocs.io/en/latest/pyserial.html)
 
-### Other necessary python modules
+### Other necessary python modules (already on the Pi)
 * time
 * picamera
+* board
+* busio
+* time
+* math
 
 ### For potential data processing at the very end
 (by no means a definitive list)
@@ -107,12 +114,10 @@ Tracking done through APRS - pass packets via Dire Wolf to I-Gate (noam.aprs2.ne
 
 For a given call sign, use this to generate a passcode for I-Gate: https://apps.magicbug.co.uk/passcode/
 
-add `* * * * * /home/pi/dw-start.sh /dev/(whatever)` to crontab
+add `* * * * * /PATH/TO/dw-start.sh >/dev/null 2>&1` to crontab
 
 Change NOCALL to call sign
 
 Enable all of the I-Gate stuff
 
-TBEACON blah blah blah every 2 minutes right?
-
-I may need to get a new passcode :(
+TBEACON sendto=IG every=2:00 symbol="igate" overlay=T (need to check overlay)
