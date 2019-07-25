@@ -1,6 +1,6 @@
 import time, serial
 
-mhz = serial.Serial("/dev/serial0", 9600, timeout=1)
+mhz = serial.Serial("/dev/ttyS0", 9600, timeout=1)
 packet = [0xff, 0x01, 0x86, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79]
 
 while True:
