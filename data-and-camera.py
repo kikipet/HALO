@@ -1,16 +1,15 @@
-import time, math, smbus, RPi.GPIO as GPIO, board, busio, adafruit_mprls, adafruit_mma8451, serial, picamera
+import time, math, board, busio, adafruit_mprls, adafruit_mma8451, serial, picamera
 
 cam = picamera.PiCamera()
 
-path = "/sys/bus/w1/devices" # ?
-tempData = open(path+"w1_slave", "r") # add path to the file name
+#path = "/sys/bus/w1/devices"
+#tempData = open(path+"w1_slave", "r")
 
 i2c = busio.I2C(board.SCL, board.SDA)
 mpr = adafruit_mprls.MPRLS(i2c, psi_min=0, psi_max=25)
-mma = adafruit_mma8451.MMA8451(i2c, address=0x1D) # this MAY change
-mhz = serial.Serial("/dev/ttyAMA0",9600,timeout=1) # replace "/dev/ttyAMA0" with actual location of sensor
-packet = [0xff,0x01,0x86,0x00,0x00,0x00,0x00,0x00,0x79] # is this what I want or do I need to change values?
-zero = [0xff, 0x87, 0x87, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf2]
+mma = adafruit_mma8451.MMA8451(i2c, address=0x1D)
+mhz = serial.Serial("/dev/ttyS0",9600,timeout=1)
+packet = [0xff,0x01,0x86,0x00,0x00,0x00,0x00,0x00,0x79]
 	
 def read_temp():
 	'''read_temp() -> float
@@ -24,10 +23,9 @@ def read_temp():
 def read_baro():
 	'''read_barometer() -> tuple
 	Reads data from barometer
-	Returns pressure (hPa), altitude (feet)'''
-	# maybe return in more "standard" unit of pressure
-	p = mpr.pressure # this is float right?
-	return (p, (10**(math.log10(p/1013.25) + 6) - 1) / 6.8755856 * -1)
+	Returns pressure (hPa), altitude (m)'''
+	p = mpr.pressure
+	return (p, (10**(math.log10(p/1013.25)/5.2558797) - 1) / 6.8755856 * -1 * 10**6 / 3.2808)
 
 def read_accel():
 	'''read_accel() -> tuple
@@ -44,25 +42,16 @@ def read_co2():
 	res = mhz.read(size=9)
 	res = bytearray(res)
 	return (res[2]<<8)|res[3]
-	# not sure if any of this is right
 
 # 1 big log file
 log = open("sensor-data-log", "w")
 
-c = 0
-
-# non-GPS data should be collected every 10 seconds or so
-
 while True:
-	# bad condition for while loop - it should stop at *some* point
-	temp = read_temp()
+	#temp = read_temp()
 	baro = read_baro()
 	accel = read_accel()
 	co2 = read_co2()
-	log.write("{}    {:6.3f} \u00b0C    {:4.3f} hPa  {:6.3f} ft    X: {:.3f} m/s\u00b2  Y: {:.3f} m/s\u00b2  Z: {:.3f} m/s\u00b2    {} ppm".format\
-		  (time.strftime("%H:%M:%S", time.gmtime(time.time()-14400))), temp, baro[0], baro[1], accel[0], accel[1], accel[2], co2))
-	# hm change capture rate based on altitude? (like at a certain point the view each minute will not change all too much)
-	# a bit arbitrary
-	cam.capture("IMG_" + time.strftime("%H%M%S", time.gmtime(time.time()-14400))) + ".jpg") # localtime or gmtime?
-	time.sleep(10)
-	c += 1
+	log.write("{}    {:4.3f} hPa  {:6.3f} m    X: {:.3f} m/s\u00b2  Y: {:.3f} m/s\u00b2  Z: {:.3f} m/s\u00b2    {} ppm".format(time.strftime("%H:%M:%S", time.gmtime(time.time()-14400)), baro[0], baro[1], accel[0], accel[1], accel[2], co2))
+	#log.write("{}    {:6.3f} K    {:4.3f} hPa  {:6.3f} m    X: {:.3f} m/s\u00b2  Y: {:.3f} m/s\u00b2  Z: {:.3f} m/s\u00b2    {} ppm".format(time.strftime("%H:%M:%S", time.gmtime(time.time()-14400)), temp, baro[0], baro[1], accel[0], accel[1], accel[2], co2))
+	cam.capture("IMG_" + time.strftime("%H%M%S", time.gmtime(time.time()-14400)) + ".jpg")
+	time.sleep(120)

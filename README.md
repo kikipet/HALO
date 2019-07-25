@@ -9,14 +9,14 @@ This is where the programs for the HALO balloon project at Purdue will be stored
 Some of these packages probably are already installed on the Pi.
 
 ### Packages through aptitude
-* ~~python-rpi.gpio~~
-* ~~python3-smbus~~
 * i2c-tools
 * libgps23
 * gpsd
 * gpsd-clients
 * libgps-dev
 * python-gps
+* libasound2-dev
+* libudev-dev
 
 ### Other programs/libraries
 * direwolf (https://github.com/wb2osz/direwolf)
@@ -79,7 +79,7 @@ Outputs acceleration in X, Y, Z directions in m/s^2.
 ### Pressure Sensor (MPRLS)
 
 Another Adafruit sensor.
-Outputs pressure in hPa, but I added some code that also outputs altitude in feet.
+Outputs pressure in hPa, but I added some code that also outputs altitude in meters.
 
 ### Temperature Sensor (DS18B20)
 
@@ -94,9 +94,11 @@ The DS18B20 temperature sensor uses a 1-wire interface.
 5. `sudo modprobe w1–gpio`
 6. `sudo modprobe w1-therm`
 
+Protip: DON'T disable device tree!
+
 ### CO2 Sensor (MHZ-14A)
 
-I don't even know what kind of sensor this is. It can use analog (but inaccurate/imprecise), PWM (ok) or serial (the best). We're using serial (UART).
+I don't even know what kind of sensor this is. It can use analog (but inaccurate/imprecise), PWM (ok) or serial (the best). We're using serial.
 
 
 ### Tracking
@@ -104,3 +106,13 @@ I don't even know what kind of sensor this is. It can use analog (but inaccurate
 Tracking done through APRS - pass packets via Dire Wolf to I-Gate (noam.aprs2.net or similar)
 
 For a given call sign, use this to generate a passcode for I-Gate: https://apps.magicbug.co.uk/passcode/
+
+add `* * * * * /home/pi/dw-start.sh /dev/(whatever)` to crontab
+
+Change NOCALL to call sign
+
+Enable all of the I-Gate stuff
+
+TBEACON blah blah blah every 2 minutes right?
+
+I may need to get a new passcode :(
