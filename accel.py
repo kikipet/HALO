@@ -1,4 +1,4 @@
-import busio, adafruit_mma8451, time
+import board, busio, adafruit_mma8451, time
 
 i2c = busio.I2C(board.SCL, board.SDA);
 mma = adafruit_mma8451.MMA8451(i2c, address=0x1D)
