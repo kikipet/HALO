@@ -28,6 +28,8 @@ Some of these packages probably are already installed on the Pi.
   * adafruit-circuitpython-mprls
 * pySerial (https://pyserial.readthedocs.io/en/latest/pyserial.html)
 
+Download libraries from https://github.com/adafruit/Adafruit_Blinka, not pip!
+
 ### Other necessary python modules (already on the Pi)
 * time
 * picamera
