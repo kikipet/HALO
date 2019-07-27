@@ -21,14 +21,14 @@ Some of these packages probably are already installed on the Pi.
 ### Other programs/libraries
 * direwolf (https://github.com/wb2osz/direwolf)
 * ~~RTL-SDR library (https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr)~~
-* Adafruit Blinka (https://pypi.org/project/Adafruit-Blinka/)
+* Adafruit Blinka (https://github.com/adafruit/Adafruit_Blinka)
+
+  Use this link, not pip!
 
   Also separate libraries for the MMA8451 and MPRLS sensors
   * adafruit-circuitpython-mma8451
   * adafruit-circuitpython-mprls
 * pySerial (https://pyserial.readthedocs.io/en/latest/pyserial.html)
-
-Download libraries from https://github.com/adafruit/Adafruit_Blinka, not pip!
 
 ### Other necessary python modules (already on the Pi)
 * time
@@ -37,6 +37,8 @@ Download libraries from https://github.com/adafruit/Adafruit_Blinka, not pip!
 * busio
 * time
 * math
+
+No guarantee that the board and busio coming with the OS are going to be the right versions of the modules
 
 ### For potential data processing at the very end
 (by no means a definitive list)
@@ -109,6 +111,7 @@ Protip: DON'T disable device tree!
 
 I don't even know what kind of sensor this is. It can use analog (but inaccurate/imprecise), PWM (ok) or serial (the best). We're using serial.
 
+Make sure that Serial Port is enabled and Serial Console is disabled
 
 ### Tracking
 
