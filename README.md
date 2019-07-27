@@ -40,6 +40,14 @@ Some of these packages probably are already installed on the Pi.
 
 No guarantee that the board and busio coming with the OS are going to be the right versions of the modules
 
+To find the path to the version of the module being used by a program:
+
+1. `python3`
+2. `import [MODULE]`
+3. `[MODULE].__file__`
+
+If this doesn't link to the Adafruit folder, then remove that file.
+
 ### For potential data processing at the very end
 (by no means a definitive list)
 * matplotlib
@@ -96,6 +104,8 @@ Outputs pressure in hPa, but I added some code that also outputs altitude in met
 
 The DS18B20 temperature sensor uses a 1-wire interface.
 
+\* **NOTE**: We didn't get this sensor to work. \*
+
 #### How to set up the Pi:
 
 1. Open `/boot/config.txt` as sudo
@@ -117,12 +127,12 @@ Make sure that Serial Port is enabled and Serial Console is disabled
 
 Tracking done through APRS - pass packets via Dire Wolf to I-Gate (noam.aprs2.net or similar)
 
-For a given call sign, use this to generate a passcode for I-Gate: https://apps.magicbug.co.uk/passcode/
+For a given call sign, use this to find its passcode for I-Gate: https://apps.magicbug.co.uk/passcode/
 
-add `* * * * * /PATH/TO/dw-start.sh >/dev/null 2>&1` to crontab
+add `* * * * * /PATH/TO/dw-start.sh >/dev/null 2>&1` to crontab to get direwolf to start up automatically
 
-Change NOCALL to call sign
+In direwolf.conf, change NOCALL to call sign
 
 Enable all of the I-Gate stuff
 
-TBEACON sendto=IG every=2:00 symbol="igate" overlay=T (need to check overlay)
+`TBEACON sendto=IG every=2:00 symbol="igate" overlay=R` (need to check overlay)
