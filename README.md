@@ -1,8 +1,6 @@
 # Project HALO
 
-\*Work in progress\*
-
-This is where the programs for the HALO balloon project at Purdue will be stored.
+This contains the programs run by the balloon's Raspberry Pi, along with a list of what else needs to be installed on it.
 
 ## Dependencies
 
