@@ -38,22 +38,6 @@ Some of these packages probably are already installed on the Pi.
 
 No guarantee that the board and busio coming with the OS are going to be the right versions of the modules
 
-### For potential data processing at the very end
-(by no means a definitive list)
-* matplotlib
-   * GEOS
-   * mplot3d
-* cartopy
-
-  More dependencies:
-   * Cython
-   * six
-   * PROJ
-   * NumPy
-   * shapely
-   * pyshp
-* mpld3
-
 ## Other noteworthy things
 
 ### General comments
