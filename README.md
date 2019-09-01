@@ -97,6 +97,8 @@ Make sure that Serial Port is enabled and Serial Console is disabled
 
 ### Tracking
 
+NOTE: Something happened at launch that broke the tracking system, the cause of which is unknown. Proceed with caution.
+
 Tracking done through APRS - pass packets via Dire Wolf to I-Gate (noam.aprs2.net or similar)
 
 For a given call sign, use this to generate a passcode for I-Gate: https://apps.magicbug.co.uk/passcode/
